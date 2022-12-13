@@ -11,7 +11,7 @@
  */
 
 import {classNames} from '@react-spectrum/utils';
-import React from 'react';
+import React, {Ref} from 'react';
 import underlayStyles from '@adobe/spectrum-css-temp/components/underlay/vars.css';
 
 interface UnderlayProps {
@@ -19,8 +19,11 @@ interface UnderlayProps {
   isTransparent?: boolean
 }
 
-export function Underlay({isOpen, isTransparent}: UnderlayProps) {
+function Underlay({isOpen, isTransparent}: UnderlayProps, ref: Ref<HTMLDivElement>) {
   return (
-    <div className={classNames(underlayStyles, 'spectrum-Underlay', {'is-open': isOpen, 'spectrum-Underlay--transparent': isTransparent})} />
+    <div ref={ref} className={classNames(underlayStyles, 'spectrum-Underlay', {'is-open': isOpen, 'spectrum-Underlay--transparent': isTransparent})} />
   );
 }
+
+const _Underlay = React.forwardRef(Underlay);
+export {_Underlay as Underlay};
