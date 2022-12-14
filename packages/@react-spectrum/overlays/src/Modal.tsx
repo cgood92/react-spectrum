@@ -18,7 +18,7 @@ import {Overlay} from './Overlay';
 import {OverlayProps} from '@react-types/overlays';
 import {OverlayTriggerState} from '@react-stately/overlays';
 import overrideStyles from './overlays.css';
-import React, {forwardRef, ReactNode, RefObject} from 'react';
+import React, {forwardRef, ReactNode, RefObject, useRef} from 'react';
 import {Underlay} from './Underlay';
 import {useViewportSize} from '@react-aria/utils';
 
@@ -36,8 +36,10 @@ function Modal(props: ModalProps, ref: DOMRef<HTMLDivElement>) {
   let {children, state, ...otherProps} = props;
   let domRef = useDOMRef(ref);
 
+  let underlayRef = useRef(null);
+
   return (
-    <Overlay {...otherProps} isOpen={state.isOpen}>
+    <Overlay {...otherProps} isOpen={state.isOpen} nodeRef={underlayRef}>
       <ModalWrapper {...props} ref={domRef}>
         {children}
       </ModalWrapper>

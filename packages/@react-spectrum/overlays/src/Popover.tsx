@@ -54,7 +54,7 @@ function Popover(props: PopoverProps, ref: DOMRef<HTMLDivElement>) {
   let domRef = useDOMRef(ref);
 
   return (
-    <Overlay {...otherProps} isOpen={state.isOpen}>
+    <Overlay {...otherProps} isOpen={state.isOpen} nodeRef={domRef}>
       <PopoverWrapper ref={domRef} {...props}>
         {children}
       </PopoverWrapper>
